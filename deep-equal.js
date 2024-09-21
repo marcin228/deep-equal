@@ -1,22 +1,22 @@
 const deepEqual = function(a, b){
 
-	let isObj = false, isArr = false;
+    let isObj = false, isArr = false;
 
-	try{ for(let key in a){} }catch(e){ isArr = true; }
-	try{ for(let key of a){} }catch(e){ isObj = true; }
+    try{ for(let key in a){} }catch(e){ isArr = true; }
+    try{ for(let key of a){} }catch(e){ isObj = true; }
 
-	if(a !== Object(a))
-		if(a == b) return true;
-        else return false;
+    if(a !== Object(a))
+        if(a == b) return true;
+            else return false;
 
     if(Object.keys(a).length != Object.keys(b).length) return false;
 
-	if(isObj)
-		for(let k in a)
+    if(isObj)
+        for(let k in a)
             if(!deepEqual(a[k], b[k])) return false;
     
-	if(isArr)
-		for(let k of a)
+    if(isArr)
+        for(let k of a)
             if(!deepEqual(a[k], b[k])) return false;
 
     return true;
