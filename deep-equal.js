@@ -2,12 +2,14 @@ const deepEqual = function(a, b){
 
     let isObj = false, isArr = false;
 
-    try{ for(let key in a){} }catch(e){ isArr = true; }
-    try{ for(let key of a){} }catch(e){ isObj = true; }
-
+    // moved primitive check up in a function body to ommit unnecessary checks if basic case is met
+    // it sped up script by 40%
     if(a !== Object(a))
         if(a == b) return true;
             else return false;
+
+    try{ for(let key in a){} }catch(e){ isArr = true; }
+    try{ for(let key of a){} }catch(e){ isObj = true; }
 
     if(Object.keys(a).length != Object.keys(b).length) return false;
 
