@@ -11,6 +11,7 @@ const deepEqual = function(a, b){
     try{ for(let key in a){} }catch(e){ isArr = true; }
     try{ for(let key of a){} }catch(e){ isObj = true; }
 
+    // to save some processing time we can return early without comparing each element of arrays if lengths are different
     if(Object.keys(a).length != Object.keys(b).length) return false;
 
     if(isObj)
